@@ -76,14 +76,14 @@ public class ServiceFacade{
             response.append(inputLine);
         }
 
-
+        System.out.println(response.toString());
         //print result
         String ans=response.toString();
-        int inicio=ans.indexOf("[");
-        int end= ans.indexOf("]");
+        int inicio=ans.lastIndexOf("[");
+        int end= ans.lastIndexOf("]");
         System.out.println(ans.substring(inicio+1,end));
         Double number=Double.parseDouble(ans.substring(inicio+1,end));
-        System.out.println(response.toString());
+
         JSONObject json= new JSONObject();
         json.append("Operator",operator);
         json.append("Result",number);
