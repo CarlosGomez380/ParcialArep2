@@ -53,8 +53,10 @@ public class ServiceFacade{
     private static JSONObject resultsPage(Request req, Response res) throws IOException {
 
         String operator= req.queryParams("operacion");
+        String radian= req.queryParams("number");
 
-        String url = "https://damp-springs-33229.herokuapp.com/results?number=65&operacion=cos";
+        String url = "https://damp-springs-33229.herokuapp.com/results?number="+radian+
+                "&operacion="+operator;
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -73,7 +75,7 @@ public class ServiceFacade{
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
-        in.close();
+
 
         //print result
         String ans=response.toString();
@@ -85,6 +87,7 @@ public class ServiceFacade{
         JSONObject json= new JSONObject();
         json.append("Operator",operator);
         json.append("Result",number);
+        in.close();
         return json;
     }
 
